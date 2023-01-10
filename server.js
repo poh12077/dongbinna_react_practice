@@ -33,14 +33,14 @@ app.get('/api/customers', (req, res) => {
         console.log(result.rows);
         res.send(result.rows);
     }
-    // dbClient.end;
+    connection.end;
   })
 })
 
 app.use('/image', express.static('./upload'));
 
 app.post('/api/customers', upload.single('image'), (req,res)=>{
-  let id = 7;
+  let id = Math.floor(Math.random() * 10000);;
   let image = '/image/' + req.file.filename;
   let name = req.body.name;
   let birthday = req.body.birthday;
@@ -55,9 +55,11 @@ app.post('/api/customers', upload.single('image'), (req,res)=>{
     .then((respond)=>{
       res.send(respond.rows);
       console.log(respond);
+      connection.end;
     })
     .catch((err)=>{
       console.log(err);
+      connection.end;
     })
 })
   

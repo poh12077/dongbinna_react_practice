@@ -68,7 +68,7 @@ class CustomerAdd extends React.Component {
         return (
             <form onSubmit={this.handleFormSubmit}>
                 <h1>customer adding</h1>
-                profile image : <input type="file" name="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange} /><br />
+                profile image : <input type="file" id="profileImage" name="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange} /><br />
                 name : <input type="text" name="userName"  value={this.state.userName} onChange={this.handleValueChange} /><br />
                 birthday : <input type="text" name="birthday" value={this.state.birthday} onChange={this.handleValueChange} /><br />
                 gender : <input type="text" name="gender" value={this.state.gender} onChange={this.handleValueChange} /><br />
@@ -78,6 +78,7 @@ class CustomerAdd extends React.Component {
         )
     }
 
+    
 }
 
 export default CustomerAdd;
