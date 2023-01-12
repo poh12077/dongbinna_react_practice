@@ -24,7 +24,7 @@ connection.connect();
 const multer = require('multer');
 const upload = multer({dest:'./upload'});
 
-let statement="SELECT * FROM customer";
+let statement="SELECT * FROM customer where isdeleted =0 ";
 app.get('/api/customers', (req, res) => {
   connection.query( statement , (error, result) => {
     if(error) {
@@ -48,19 +48,36 @@ app.post('/api/customers', upload.single('image'), (req,res)=>{
   let job = req.body.job;
 
   let sql = {
-    text : 'insert into customer values ($1,$2,$3,$4,$5,$6)',
+    text : 'insert into customer values ($1,$2,$3,$4,$5,$6, now(), 0)',
     values: [id, image, name, birthday, gender, job],
   }
   connection.query(sql )
-    .then((respond)=>{
-      res.send(respond.rows);
-      console.log(respond);
+    .then((DBRes)=>{
+      res.send(DBRes.rows);
+      console.log(DBRes);
       connection.end;
     })
     .catch((err)=>{
       console.log(err);
       connection.end;
     })
+})
+
+app.delete('/api/customers/:id',(req, res)=>{
+  let sql = {
+    text : 'update customer set isdeleted =1 where id = ($1)',
+    values : [req.params.id]
+  } 
+  connection.query(sql)
+  .then((DBRes)=>{
+    res.send(DBRes.rows);
+    console.log(DBRes);
+    connection.end;
+  })
+  .catch((err)=>{
+    console.log(err);
+    connection.end;
+  })
 })
   
 app.listen(port, () => {
