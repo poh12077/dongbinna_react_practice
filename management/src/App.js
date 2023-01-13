@@ -21,19 +21,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 
-// const styles = theme => ({
-//   root: {
-//     width: '100%',
-//     marginTop: theme.spacing(3),
-//     overflowX: 'auto'
-//   },
-//   table: {
-//     minWidth: 1080
-//   },
-//   process: {
-//     margin: theme.spacing(2)
-//   }
-// })
 
 const styles = theme => ({
   root: {
@@ -51,7 +38,7 @@ const styles = theme => ({
     marginRight: 18
   },
   progress: {
-    margin: theme.spacing.unit * 2
+    margin: theme.spacing(2)
   },
   grow: {
     flexGrow: 1,
