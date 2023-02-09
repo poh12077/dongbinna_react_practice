@@ -34,6 +34,7 @@ class CustomerAdd extends React.Component {
         this.addCustomer()
             .then((response) => {
                 console.log(response.data);
+                this.props.stateRefresh();
             }).catch((error) => {
                 console.log(error)
             })
@@ -46,7 +47,7 @@ class CustomerAdd extends React.Component {
             fileName: '',
             open:false
         })
-        window.location.reload();
+        // window.location.reload();
     }
 
     handleFileChange = (e) => {
